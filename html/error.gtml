@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+    {{ template "head.gtml" "Oops..." }}
+    <body>
+	{{ template "header.gtml" }}
+	<content>
+	    <h1>{{ .H }}</h1>
+	    <p style="margin: 16px;">{{ .M }}</p>
+	</content>
+	{{ template "footer.gtml" }}
+    </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    {{ template "head.gtml" "About REDB" }}
+    <body>
+	{{ template "header.gtml"}}
+	{{ $domain := "redb.org.uk" }}
+	<aside id="toc" class="text">
+	    <h4>Table of Contents</h4>
+	    <ul>
+		<li><a href="#general">General</a></li>
+		<li><a href="#faq">FAQ</a>
+		    <ul>
+			<li><a href="#task">What is a task?</a></li>
+			<li><a href="#dbd">What are the <i>database dumps</i>?</a></li>
+			<li><a href="#contrib">How to contribute?</a></li>
+			<li><a href="#nsfaq">Not-so-frequently asked questions?</a></li>
+		    </ul>
+		</li>
+		<li><a href="#tech">Technical</a></li>
+		<li><a href="#regex">REDB as a ReGeX game server</a></li>
+	    </ul>
+	</aside>
+	<content class="text">
+	    <h2 id="general">General</h2>
+	    <p>
+		The <a href="https://en.wikipedia.org/wiki/Regular_expression">
+		Regular Expression</a> Database (REDB) is a free, public
+		and open commodity serving the purpose to offer solutions
+		to certain <i><a href="#task">tasks</a></i>, by means
+		of <q>crowd sourcing</q>. All information that is permanently
+		stored on this server, is accesable via the web interface,
+		or the periodical <a href="#dbd">database dumps</a>.
+	    </p>
+
+	    <h2 id="faq">FAQ</h2>
+
+	    <h4 id="task">What is a task?</h4>
+	    <p>
+		A task is, simply put, a set of words (or more generally character
+		sequences), some of which have to be matched, others intentionally
+		not. Matching is done by means of regular expressions.
+	    </p>
+	    <p>
+		Furthermore the followig <a href="/source/db.go">metadata</a> is stored:
+		<dl>
+		    <dt>Title</dt>
+		    <dd>A short name, explaining what this task is about</dd>
+		    <dt>Author</dt>
+		    <dd>
+			A non-verified reference to who created the task. Should
+			oblige to <a href="https://tools.ietf.org/html/rfc5322#section-3.4">
+			RFC 5322</a>
+		    </dd>
+		    <dt>Description</dt>
+		    <dd>
+			A more elaborate, but not necessary, text on the task.
+			It might point out what is special about the challenge,
+			or what the client should pay attention to when trying
+			to solve it.
+		    </dd>
+		    <dt>Times called</dt>
+		    <dd>
+			This number describes the ammount of times this challenge
+			has been offered to a client, but not the ammount of times
+			is has been solved successfully.
+		    </dd>
+		    <dt>Level</dt>
+		    <dd>
+			The <a href="/source/model.go">levelling algorithm</a>, will
+			probably never be complete, but still tries to rate tasks
+			with a relative difficulty to eachother. No absolute leveling
+			mechanism exits.
+		    </dd>
+		    <dt>When created</dt>
+		    <dd>The date and time refering to when the task was created.</dd>
+		</dl>
+	    </p>
+
+	    <h4 id="dbd">What are the <i>database dumps</i>?</h4>
+	    <p>
+		From time to time, the maintainers of REDB publish all the contents
+		of the usually hidden database, in form of a sqlite file. This
+		data is licensed under the <a href="http://opendatacommons.org/licenses/odbl/1.0/">
+		Open Database License</a>, meaning that anyone may use it, as
+		long as they fulfil the conditions described within.
+	    </p>
+
+	    <h4 id="contrib">How to contribute?</h4>
+	    <p>
+		There are 3 major ways to contribute to REDB:
+		<ol>
+		    <li>
+			By creating interesting and challenging tasks,
+			you improve the quality of the database. To do
+			so, <a href="/contrib">visit this page</a>, and
+			fill in the form. If you wish to contribute
+			in bulk, send an email to <a href="mailto:bluk@{{ $domain }}">
+			bulk@{{ $domain }}</a>. Details will be discussed individually.
+		    </li>
+		    <li>
+			Development is always welcome, especially
+			when trying to improve software quality, speed
+			or safely. Development is centered on
+			<a href="http:github.com/phikal/redb">GitHub</a>,
+			but may not necessarily stay there forever. Patches
+			are also accepted via <a href="mailto:patches@{{ $domain }}">
+			    patch@{{ $domain }}</a><br/> Regarding web design
+			<q>improvements</q>: The current layout might seem obsolute,
+			and the lack of javascript frameworks (or whatever) could be
+			considered outdated.<br/> But this is all intentional!
+			This website will always try and minimize client
+			side scripting, while keeping a small footprint. Even
+			the logo was optimized.<br/> If for whatever reason
+			you feel like this is a harmfull attitude, feel free
+			to fork the database and make your own site with
+			React, Bootstrap, jQuery and 20 CSS-Frameworks.<br/>
+			Acctual improvements to minimize CSS or make better
+			use of HTML are on the other hand glady appreciated.
+		    </li>
+		    <li>
+			Some tasks might be considered <i>unfit</i> for
+			public use. Reasons might be anything from pure
+			lack of challenge (match: "ab", "ac"; don't match: "xzy"),
+			up to inappropriate content or private/sensitive data
+			embedded into a challenge (later on, a NSFW filter might
+			be added, to compromise between quality and censorship).
+			<br/>If for whatever reason you feel like a task should
+			be removed (or later on hidden), send an email with an explanation,
+			and the ID to <a href="mailto:report@{{ $domain }}">report@{{ $domain }}</a>.
+		    </li>
+		</ol>
+	    </p>
+
+	    <h4 id="nsfaq">Not-so-frequently asked questions</h4>
+	    <h5>Copyright and related</h5>
+	    <p>
+		The contents of the database are published under the
+		<a href="http://opendatacommons.org/licenses/odbl/1.0/">
+		    Open Database License</a>, the source code under the
+		<a href="https://www.gnu.org/licenses/gpl-2.0.en.html">
+		    GNU General Public License, version 2</a>
+		and the contents of the websites (ie. HTML) under
+		<a href="https://creativecommons.org/licenses/by/3.0/">
+		    Creative Commons Attribution 3.0 Unported (CC BY 3.0)</a>.
+	    </p>
+	    <p>
+		The logo is based on one of the images from the
+		Pearson Scott Foresman donation to the Wikimedia foundation:
+		<a href="https://commons.wikimedia.org/wiki/File:Bee_-_queen_(PSF).png">
+		    Bee - queen (PSF).png</a>, published into public domain.
+	    </p>
+
+	    <h5>Owners and Maintainers</h5>
+	    <p>
+		Currently this server was initially developed and is currently
+		maintained by <a href="http://phikal.ignorelist.com">Philip
+		Kaludercic</a>. 
+	    </p>
+
+	    <h5>Contact and Updates</h5>
+	    <p>
+		REDB is not represented on Facebook, Twitter, Google+ or
+		any similar centralized and profit oriented services.
+	    </p>
+	    <p>
+		The only relaible contact is either via <a href="mailto:contact@{{ $domain }}">
+		email</a> or <a href="https://quitter.no/redb">GNU Status</a>.
+	    </p>
+
+	    <h5>On accounts</h5>
+	    <p>
+		REDB does on purpose not enforce, nor even offer accounts. Submission
+		is done anonymously, meaning that any data on the author doesn't
+		necessary indicate that that person created the task (later on
+		PGP auth might be added, to certify tasks).
+	    </p>
+
+	    <h5>On the domain</h5>
+	    <p>
+		The domain <code>{{ $domain }}</code>, has no direct affilication
+		to the United Kingdom, but was rather chosen by chance, since
+		all other reputable top-level domain names were not
+		available.
+	    </p>
+	    
+	    <h2 id="tech">Technical</h2>
+	    <p>
+		This server, and all components immediately connected to it,
+		are implemented in <a href="http://golang.org">
+		the Go programming language</a>. The database used is PostgreSQL.
+	    </p>
+	    <p>
+		The source is <a href="/source/">available</a> for free use under GPL,
+		The <a href="/source/README">README</a> has all the instructions and
+		information neccesary to start working.
+	    </p>
+
+	    <h2 id="regex">REDB as a ReGeX game server</h2>
+	    <p>
+		A ReGeX game server creates or offers <i>challenges</i>
+		(ie. certain words to match and certain words not to),
+		which may be solved by the participant.
+	    </p>
+	    <p>
+		It is up the the server to decide what to do with
+		the result. The client isn't even guaranteed wether
+		the server will check the suggestions validity.
+	    </p>
+	    <p>
+		REDB, which has a ReGeX game server tightly integrated
+		into itself, <b>will save the suggestion</b>, and
+		grant penalties on those who abuse it. These results
+		are all public, and no metadata (besides when it was
+		submitted) is saved.
+	    </p>
+	    <p>
+		On *nix systems, one could play without installing
+		any further programmes (but <code>nc</code> or similar),
+		as so:
+	    </p>
+	    <code>nc {{ $domain }} 25921</code>
+	    <p>
+		The protocol is specified in the <a href="/source/game.go">
+		source code</a>, and could (or should) also easily be parsed
+		by a client programme.
+	    </p>
+	</content>
+	{{ template "footer.gtml" }}
+    </body>
+</html>

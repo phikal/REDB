@@ -1,0 +1,20 @@
+<header>
+    <a href="/"><img src="/logo.png" title="<Red Bee>"/></a>
+    <div id="top">
+	<a href="/"><b>REDB ::</b> Regular Expression Database</a>
+	<span class="side">
+	    <a href="/contrib">[contribute]</a>
+	    <a href="/about">[about]</a>
+	</span>
+    </div>
+    <div id="bot">
+	{{ with . }}
+	    Sort by:
+	    <a href="/new"  {{ if eq . "n" }} class="current" {{ end }}>newest</a> /
+	    <a href="/pop"  {{ if eq . "p" }} class="current" {{ end }}>popular</a> /
+	    <a href="/diff" {{ if eq . "d" }} class="current" {{ end }}>difficulty</a>
+	{{ end}}
+	
+	<a href="/search" class="search">[search]</a>
+    </div>
+</header>

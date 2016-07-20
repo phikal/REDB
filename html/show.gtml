@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+    {{ template "head.gtml" printf "REDB - %s" .Title }}
+    <body>
+	{{ template "header.gtml" }}
+	<content>
+	    <section>
+		<div id="info">
+		    {{ with $a := .Author }}
+		    {{ with $l := libr . }}
+		    <img style="padding-right: 4px; width: 70px;"
+			 src="{{ $l }}"
+			 title="{{ $a }}"/>
+		    {{ end}}
+		    {{ end}}
+
+		    <table style="float: right;"><tbody>
+			<tr>
+			    <td><b>Level:</b></td>
+			    <td>{{ .Level }}</td>
+			</tr>
+			<tr>
+			    <td><b>Called:</b></td>
+			    <td>{{ .Called }}</td>
+			</tr>
+			<tr>
+			    <td><b>Created:</b></td>
+			    <td title="{{ .Created.Format "Monday, 02-Jan-06 15:04:05 MST" }}">{{ .Created.Format "02 Jan 06" }}</td>
+			</tr>
+		    </tbody></table>
+		</div>
+
+		<h3 style="margin: 0; padding-top: 18px;">
+		    {{ .Title }}
+		</h3>
+		<p class="text" style="padding: 8px;">
+		    {{ with .Discription}}
+		    {{ . }}
+		    {{ else}}
+		    <i>No Discription</i>
+		    {{ end }}
+		</p>
+	    </section>
+	    <hr/>
+	    <table><tbody>
+		<tr>
+		    <td><b>Match</b></td>
+		    <td class="word mat">{{ range .Match }}<span>{{ . }}</span>{{ end }}</td>
+		</tr>
+		<tr>
+		    <td><b>Don't</b></td>
+		    <td class="word dma">{{ range .Dmatch }}<span>{{ . }}</span>{{ end }}</td>
+		</tr>
+	    </tbody></table>
+
+
+	</content>
+	<hr/>
+	<content>
+	    {{ with .Solutions }}
+	    <table style="width: 100%; padding-bottom: 4px"><tbody>
+		<tr>
+		    <th>Regular expression</th>
+		    <th>Times suggested</th>
+		    <th>Oldest suggestion</th>
+		    <th>Newest suggestion</th>
+		</tr>
+		{{ range . }}
+		<tr>
+		    <td><code>{{ .Solution }}</code></td>
+		    <td>{{ .Times }}</td>
+		    <td>{{ .First.Format "02 Jan 06" }}</td>
+		    <td>{{ .Last.Format "02 Jan 06" }}</td>
+		</tr>
+		{{ end }}
+	    </tbody></table>
+	    </ul>
+	    {{ else }}
+	    <p><i>No solutions yet...</i></p>
+	    {{ end }}
+	</content>
+	{{ template "footer.gtml" }}
+    </body>
+</html>

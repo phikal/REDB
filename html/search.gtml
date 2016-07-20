@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    {{ with .Q}}
+	{{ template "head.gtml" printf "Search for %s" . }}
+    {{ else}}
+	{{ template "head.gtml" printf "Search" }}
+    {{ end}}
+    <body>
+	{{ template "header.gtml" }}
+	<aside>
+	    <h3 style="float: right">Search the database</h3>
+	    <form accept-charset="UTF-8" style="padding-top: 16px;">
+		<input name="q" placeholder="Query" value="{{ .Q }}"/>
+		<input type="submit"/><br/>
+		<table><tbody>
+		    <tr>
+			<td>Sort by:</td>
+			<td>
+			    <input type="radio"
+				   name="s"
+				   value="n"
+				   {{ if eq .S "n" }} checked {{ end }} /> Newest
+			    <input type="radio"
+				   name="s"
+				   value="p"
+				   {{ if eq .S "p" }} checked {{ end }} /> Popularity
+			    <input type="radio"
+				   name="s"
+				   value="d"
+				   {{ if eq .S "d" }} checked {{ end }} /> Difficulty<br/>
+			</td>
+		    </tr>
+		    <tr>
+			<td>Reverse:</td>
+			<td>
+			    <input type="checkbox"
+				   name="r"
+				   value="y"
+				   {{ with .R }} checked {{ end }}/>
+			</td>
+		    </tr>
+		</tbody></table>
+	    </form>
+	</aside>	    
+	<content>
+	    {{ template "list.gtml" . }}
+	</content>
+	{{ template "footer.gtml" }}
+    </body>
+</html>
