@@ -90,8 +90,8 @@ func (t *Task) calcLevel() {
 func (t Task) isAcceptable() error {
 	for _, w := range t.Match {
 		for _, c := range t.Dmatch {
-			if w == c {
-				return fmt.Errorf("Words to match and words not to match have duplicates")
+			if w == c && w != "" {
+				return fmt.Errorf("Words to match and words not to match have duplicates (%q and %q)", w, c)
 			}
 		}
 	}

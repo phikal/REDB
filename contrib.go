@@ -76,13 +76,13 @@ func contrib(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 
-			if entries < 2 || entries > 12 {
+			if ment < 2 || ment > 12 {
 				w.WriteHeader(http.StatusPartialContent)
 				t.ExecuteTemplate(w, "error.gtml", errorPage{
 					"406 - Not Acceptable",
 					"Too many or too few entries to match (min 2, max 12)",
 				})
-			} else if entries < 1 || entries > 12 {
+			} else if dent < 1 || dent > 12 {
 				w.WriteHeader(http.StatusPartialContent)
 				t.ExecuteTemplate(w, "error.gtml", errorPage{
 					"406 - Not Acceptable",
