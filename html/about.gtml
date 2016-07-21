@@ -104,18 +104,7 @@
 			<a href="http:github.com/phikal/redb">GitHub</a>,
 			but may not necessarily stay there forever. Patches
 			are also accepted via <a href="mailto:patches@{{ $domain }}">
-			    patch@{{ $domain }}</a><br/> Regarding web design
-			<q>improvements</q>: The current layout might seem obsolute,
-			and the lack of javascript frameworks (or whatever) could be
-			considered outdated.<br/> But this is all intentional!
-			This website will always try and minimize client
-			side scripting, while keeping a small footprint. Even
-			the logo was optimized.<br/> If for whatever reason
-			you feel like this is a harmfull attitude, feel free
-			to fork the database and make your own site with
-			React, Bootstrap, jQuery and 20 CSS-Frameworks.<br/>
-			Acctual improvements to minimize CSS or make better
-			use of HTML are on the other hand glady appreciated.
+			    patch@{{ $domain }}</a>
 		    </li>
 		    <li>
 			Some tasks might be considered <i>unfit</i> for
@@ -182,6 +171,14 @@
 		all other reputable top-level domain names were not
 		available.
 	    </p>
+
+	    <h5>What is a regular expression?</h5>
+	    <blockquote cite="https://swtch.com/~rsc/regexp/regexp1.html">
+		Regular expressions are a notation for describing sets
+		of character strings. When a particular string is in
+		the set described by a regular expression, we often
+		say that the regular expression matches the string.
+	    </blockquote>
 	    
 	    <h2 id="tech">Technical</h2>
 	    <p>
