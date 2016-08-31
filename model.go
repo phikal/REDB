@@ -40,13 +40,13 @@ func (t Task) matches(sol string) bool {
 	}
 
 	for _, w := range t.Match {
-		if !re.MatchString(w) {
+		if re.FindString(w) != w {
 			return false
 		}
 	}
 
 	for _, w := range t.Dmatch {
-		if re.MatchString(w) {
+		if re.FindString(w) == w {
 			return false
 		}
 	}
