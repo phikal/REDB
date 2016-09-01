@@ -13,6 +13,26 @@ import (
 	"time"
 )
 
+func getRndTask() (task Task, err error) {
+
+	// select random task (according to `getrnd` query)
+	if err := getrnd.QueryRow(lvl).Scan(&task.Id); err != nil {
+		return
+	}
+
+	// generate transaction and load words
+	if tx, err := db.Begin(); err != nil {
+		return
+	} else if err := task.loadWords(tx); err != nil {
+		return
+	} else {
+		tx.Stmt(inccou).Exec(task.Id)
+		tx.Commit()
+	}
+
+	return
+}
+
 func gameServer() {
 	listener, err := net.Listen("tcp", ":25921")
 	if err != nil {
@@ -49,24 +69,12 @@ func gameServer() {
 					break
 				}
 
-				// select random task (according to `getrnd` query)
-				if err := getrnd.QueryRow(lvl).Scan(&task.Id); err != nil {
-					if err == sql.ErrNoRows {
-						fmt.Fprintf(c, "! %s\n", err.Error())
-						continue
-					}
+				if task, err = getRndTask(); err == sql.ErrNoRows {
+					fmt.Fprintf(c, "! %s\n", err.Error())
+					continue
+				} else if err != nil {
 					fmt.Fprintf(c, "! %s\n", err.Error())
 					break
-				}
-
-				// generate transaction and load words
-				if tx, err := db.Begin(); err != nil {
-					fmt.Fprintf(c, "! %s\n", err.Error())
-				} else if err := task.loadWords(tx); err != nil {
-					fmt.Fprintf(c, "! %s\n", err.Error())
-				} else {
-					tx.Stmt(inccou).Exec(task.Id)
-					tx.Commit()
 				}
 
 				// print information
