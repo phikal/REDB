@@ -5,31 +5,30 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
-	"io"
 	"log"
+	"io"
 	"net"
 	"time"
+	"math/rand"
 )
 
-func getRndTask() (task Task, err Error) {
+func getRndWord() string {
+	return words[rand.Intn(len(words))]
+}
 
-	// select random task (according to `getrnd` query)
-	if err := getrnd.QueryRow(lvl).Scan(&task.Id); err != nil {
-		return
+func getRndTask() (task Task, _ error) {
+	for task.isAcceptable() != nil {
+		task = Task{}
+
+		for i := 1 + rand.Intn(4); i > 0; i-- {
+			task.Match = append(task.Match, getRndWord())
+		}
+
+		for i := 1 + rand.Intn(4); i > 0; i-- {
+			task.Dmatch = append(task.Dmatch, getRndWord())
+		}
 	}
-
-	// generate transaction and load words
-	if tx, err := db.Begin(); err != nil {
-		return
-	} else if err := task.loadWords(tx); err != nil {
-		return
-	} else {
-		tx.Stmt(inccou).Exec(task.Id)
-		tx.Commit()
-	}
-
 	return
 }
 
@@ -47,7 +46,7 @@ func gameServer() {
 		}
 
 		go func(c io.ReadWriteCloser) {
-			fmt.Fprintln(c, "@ [RGS] REDB game server")
+			fmt.Fprintln(c, "@ ReGeX test server with words")
 			defer c.Close()
 
 			var (
@@ -69,17 +68,14 @@ func gameServer() {
 					break
 				}
 
-				if task, err = getRndTask(); err == sql.ErrNoRows {
-					fmt.Fprintf(c, "! %s\n", err.Error())
-					continue
-				} else if err != nil {
+				if task, err = getRndTask(); err != nil{
 					fmt.Fprintf(c, "! %s\n", err.Error())
 					break
 				}
 
 				// print information
 				task.calcLevel()
-				fmt.Fprintf(c, "@ id: %x; lvl: %d\n", task.Id, task.Level)
+				fmt.Fprintf(c, "@ lvl: %d\n", task.Level)
 
 				// print information
 				for _, w := range task.Match {

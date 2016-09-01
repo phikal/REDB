@@ -1,123 +1,15 @@
-This is the source code of REDB (Regular Expression Database). This
-document should explain all steps necessary to run and use REDB on any
-machine capable of doing so.
+This is a testing branch with a minimal
+ReGeX server. It has no external dependencies,
+an is setup and run as follows:
 
-* Building and Running
+  $ go build # and wait
+  $ ./redb < /path/to/word/list
+  Read 99172 words. Starting server... 
+  Suggested "w.*"
+  Suggested "(a|.*)l[^xy]"
+  ...
 
-  Assuming =go= (developed and tested with version 1.6 on linux) has
-  is already installed, all that is left to do is typing =go get= to
-  fetch the external libraries, followed by =go build= to create the
-  local binary.
-  
-  This binary should be executed from within the directory it was
-  built in, ie. the same on this =README= file should be in too. This is
-  fe. due to go reading the html templates every time when starting.
-  
-  The last step is to define the =$redb_conn= environmental variable,
-  used to establish a connection to a PostgreSQL (min. version 9.5)
-  database, with appropriate permissions to read and write tables,
-  entries, etc.
-  
-* Project structure
-  
-  To help with navigating the project, now follows a short summery of
-  files and directories:
-  
-  - =/= :: Project root (not system root)
-  - =README= :: This file
-  - =/main.go= :: Defines the start-up procedure, including the ReGeX game
-                  server and the HTTP server
-  - =/model.go= :: All conceptual models within the project are described here
-  - =/db.go= :: Prepares all database statements and creates tables if necessary
-  - =/game.go= :: Implements the ReGeX game server used by REDB
-  - =/routes.go= :: Prepares all templates and libravatar related functions
-  - =/index.go= :: Processes requests to display a list of tasks
-  - =/contrib.go= :: Offers an interface and method to submit tasks (captcha validated)
-  - =/search.go= ::  Offers an interface and method to find certain requests
-  - =/show.go= :: Displays all information in connection to a task
-  - =/css/style.css= :: All style-sheet information required to render the page
-  - =/html/= :: Directory with all go html templates
-  - =/html/head.gtml= :: Contains common HTML <head>
-  - =/html/header.gtml= :: Contains common HTML <header>
-  - =/html/footer.gtml= :: Contains common HTML <footer>
-  - =/html/about.gtml= :: The "about" page source
-  - =/html/show.gtml= :: HTML front end for =show.go=
-  - =/html/index.gtml= :: HTML front end for =index.go=
-  - =/html/search.gtml= :: HTML front end for =search.go=
-  - =/html/contrib.gtml= :: HTML front end for =contrib.go=
-  - =/html/list.gtml= :: Generates a list of challenges, used by index and search
-  - =/html/error.gtml= :: General page for error messages
-  - =/img/= :: All images used by the server
-	       
-  Files not mentioned here, should be self evident, or have been
-  forgotten.
-  
-* The ReGeX game server protocol
-  
-  The protocol is simple and line-oriented; the first character,
-  always followed by a simple white-space character, indicates what
-  the client should do. The following options exist:
-  
-  - =:= :: Enter the maximal level of the challenge
-	   (ie. an int) you wish to revive. The protocol makes no
-	   guarantees on whether this wish will be respected nor to
-	   what degree it will try and find a sufficiently fit task.
-	   
-	   If it is known that the server ignores this wish, you still
-	   have to enter a number, for the sake of compatibility,
-	   fe. 0
-	   
-	   Negative numbers are reserved for server specific control
-	   commands.
-	   
-  - =@= :: The server may output trivial information,
-	    such as server information (uptime, task count, connection
-	   count, ...) or status updates (task solved
-	   (un-)successfully, task ID/level, ...). These lines do not
-	   have to be processed by a client.
-  
-	    By custom the first line after the client connects to the
-	   server starts with a "@".  Here the server offers a short
-	   introduction, fe. including name, version and/or owner.
-  
-  - =!= :: In the case of a severe error (database/
-	   connection broken, EOS, ...) the server informs the client
-	   appropriately. Such messages should not, and often cannot,
-	   be ignored, but should be processed and dealt with by the
-	   client.
-  
-	   It is not uncommon for the connection to terminate after
-	   such a message.
-  
-  - =+=, =-= :: Both these lines server a similar purpose.
-		After requesting a task (see ":" prompt), the words to
-		(followed by =+=) and not to match (followed by =-=)
-		are listed.
-  
-  - =>= :: The previous list is known to have ended,
-	   as soon as this prompt is parsed. It indicated that the
-	   server is now listening for a suggestion to solve the task.
-  
-	  The input is read into until the new line.
-  
-  Any delay between lines, should not be interpreted as the server
-  misbehaving (all misbehaviour should be indicated by a "!"
-  message), but should be assumed to be on purpose. Reasons could
-  either be a short latency due to high database traffic or even the
-  intentional act of the server to punish the client (session or IP
-  address) for any timespan.
-    
-* Legal
-  
-  The source code is licensed under GPLv2. See =LICENSE= for more
-  information. HTML files under CC BY 3.0.
-  
-** Third party projects used
-   
-   - lib/pq :: https://godoc.org/github.com/lib/pq, MIT
-   - strk/libravatar :: https://godoc.org/strk.kbt.io/projects/go/libravatar, MIT
-   - dchest/captcha :: https://godoc.org/github.com/dchest/captcha, MIT
-		       
-* Authors and Contributors
-  
-  - =Philip Kaludercic <philippija@gmail.com>=, 2016-
+For licensing, refer to LICENSE
+
+---
+phikal, 2016
