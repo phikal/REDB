@@ -13,17 +13,20 @@ import (
 	"time"
 )
 
-func getRndTask() (task Task, err error) {
+func getRndTask(lvl uint) (task Task, err error) {
 
 	// select random task (according to `getrnd` query)
-	if err := getrnd.QueryRow(lvl).Scan(&task.Id); err != nil {
+	if err = getrnd.QueryRow(lvl).Scan(&task.Id); err != nil {
 		return
 	}
 
 	// generate transaction and load words
-	if tx, err := db.Begin(); err != nil {
+	tx, err := db.Begin()
+	if err != nil {
 		return
-	} else if err := task.loadWords(tx); err != nil {
+	}
+
+	if err = task.loadWords(tx); err != nil {
 		return
 	} else {
 		tx.Stmt(inccou).Exec(task.Id)
@@ -69,7 +72,7 @@ func gameServer() {
 					break
 				}
 
-				if task, err = getRndTask(); err == sql.ErrNoRows {
+				if task, err = getRndTask(lvl); err == sql.ErrNoRows {
 					fmt.Fprintf(c, "! %s\n", err.Error())
 					continue
 				} else if err != nil {
