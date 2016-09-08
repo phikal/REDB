@@ -5,6 +5,7 @@
 package main
 
 import (
+	"flag"
 	"github.com/dchest/captcha"
 	"html/template"
 	"log"
@@ -61,5 +62,23 @@ func main() {
 	http.Handle("/c/", captcha.Server(260, 80))
 	http.Handle("/source/", http.StripPrefix("/source/", http.FileServer(http.Dir("."))))
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
-}
+	var cert, key string
+	flag.StringVar(&cert, "cert", "", "specifies TSL cert file")
+	flag.StringVar(&key, "key", "", "specifies TSL key file")
+	flag.Parse()
+
+	if cert != "" && key != "" {
+		go func() {
+			log.Fatal(&http.Server{
+				Addr:           ":8080",
+				Handler:        http.RedirectHandler("", http.StatusFound),
+			}.ListenAndServe())
+			os.Exit(1)
+		}()
+		log.Println("Starting server (with TSL) on port 10443")
+		log.Fatal(http.ListenAndServeTSL(":10443", cert, key, nil))
+	} else {
+		log.Println("Starting server (without TSL) on port 8080")
+		log.Fatal(http.ListenAndServe(":8080", nil))
+	}
+
