@@ -25,12 +25,12 @@ var (
 )
 
 func init() {
-	if os.Getenv("redb_conn") == "" {
-		log.Fatal("\"$redb_conn\" not defined.")
+	if os.Getenv("PGCONN") == "" {
+		log.Fatal("\"$PGCONN\" not defined.")
 	}
 
 	var err error
-	db, err = sql.Open("postgres", os.Getenv("redb_conn"))
+	db, err = sql.Open("postgres", os.Getenv("PGCONN"))
 	if err != nil {
 		log.Fatal(err)
 	}
