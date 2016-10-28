@@ -25,12 +25,14 @@
 	    <h2 id="general">General</h2>
 	    <p>
 		The <a href="https://en.wikipedia.org/wiki/Regular_expression">
-		Regular Expression</a> Database (REDB) is a free, public
-		and open commodity serving the purpose to offer solutions
-		to certain <i><a href="#task">tasks</a></i>, by means
-		of <q>crowd sourcing</q>. All information that is permanently
-		stored on this server, is accesable via the web interface,
-		or the periodical <a href="#dbd">database dumps</a>.
+		Regular Expression</a> Database (REDB) hosts <i><a href="#task">tasks</a></i>
+		and their solutions. Tasks are anonymously submitted, and
+		the solutions are anonymously collected via the <a href="#regex">
+		ReGeX game server protocol</a>.
+
+		All information that is permanently stored on this
+		server, is accesable via the web interface, or the
+		periodical <a href="#dbd">database dumps</a>.
 	    </p>
 
 	    <h2 id="faq">FAQ</h2>
@@ -149,12 +151,9 @@
 
 	    <h5>Contact and Updates</h5>
 	    <p>
-		REDB is not represented on Facebook, Twitter, Google+ or
-		any similar centralized and profit oriented services.
-	    </p>
-	    <p>
 		The only relaible contact is either via <a href="mailto:contact@{{ $domain }}">
-		email</a> or <a href="https://quitter.no/redb">GNU Status</a>.
+		email</a>. Occasional updates would be posted on
+		<a href="https://quitter.no/redb">GNU Status</a>.
 	    </p>
 
 	    <h5>On accounts</h5>
