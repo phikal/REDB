@@ -42,11 +42,25 @@ table.list {
     width: 100%;
     border-collapse: collapse;
     margin-top: 4px;
+    table-layout: fixed;
+}
+
+table.list td:nth-child(1) {
+    width: min-content;
+    width: -moz-min-content;
+    width: -webkit-min-content;
+}
+
+table.list td:nth-child(2) {
+    word-wrap: break-word;
 }
 
 table.list td:nth-child(3) {
-    white-space: nowrap;
     text-align: right;
+    vertical-align: top;
+    width: max-content;
+    width: -moz-max-content;
+    width: -webkit-max-content;
 }
 
 table.list td {
