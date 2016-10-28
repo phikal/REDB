@@ -1,20 +1,31 @@
 <header>
-    <a href="/"><img src="/logo.png" title="<Red Bee>"/></a>
-    <div id="top">
-	<a href="/"><b>REDB ::</b> Regular Expression Database</a>
-	<span class="side">
+	<a href="/" style="font-weight: bold;" title="Regular Expression Database">REDB</a>
+	{{ with . }}
+	    Sort by:
+	    <a href="/new"  {{ if eq . "n" }} style="font-weight: bold;" {{ end }}>
+		<span class="wide">newest</span>
+		<span class="narrow">new</span>
+	    </a> /
+	    <a href="/pop"  {{ if eq . "p" }} style="font-weight: bold;" {{ end }}>
+		<span class="wide">popular</span>
+		<span class="narrow">pop</span>
+	    </a> /
+	    <a href="/diff" {{ if eq . "d" }} style="font-weight: bold;" {{ end }}>
+		<span class="wide">difficulty</span>
+		<span class="narrow">diff</span>
+		
+	    </a>
+	{{ end}}
+
+	<span class="wide" style="float: right">
+	    <a href="/search" class="search">[search]</a>
 	    <a href="/contrib">[contribute]</a>
 	    <a href="/about">[about]</a>
 	</span>
-    </div>
-    <div id="bot">
-	{{ with . }}
-	    Sort by:
-	    <a href="/new"  {{ if eq . "n" }} class="current" {{ end }}>newest</a> /
-	    <a href="/pop"  {{ if eq . "p" }} class="current" {{ end }}>popular</a> /
-	    <a href="/diff" {{ if eq . "d" }} class="current" {{ end }}>difficulty</a>
-	{{ end}}
 	
-	<a href="/search" class="search">[search]</a>
-    </div>
+	<div class="narrow">
+	    <a href="/search" class="search">[search]</a>
+	    <a href="/contrib">[contribute]</a>
+	    <a href="/about">[about]</a>
+	</div>
 </header>

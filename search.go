@@ -47,11 +47,12 @@ func search(w http.ResponseWriter, r *http.Request) {
 				query = findpr
 			case diff:
 				query = finddr
-			case new:
+			default:
 				sort = new
 				fallthrough
-			default:
+			case new:
 				query = findnr
+
 			}
 		}
 

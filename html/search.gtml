@@ -19,7 +19,7 @@
 			    <input type="radio"
 				   name="s"
 				   value="n"
-				   {{ if eq .S "n" }} checked {{ end }} /> Newest
+				   {{ if eq .S "n" }} checked {{ else if eq .S "" }} {{ end }} /> Newest
 			    <input type="radio"
 				   name="s"
 				   value="p"
@@ -45,6 +45,5 @@
 	<content>
 	    {{ template "list.gtml" . }}
 	</content>
-	{{ template "footer.gtml" }}
     </body>
 </html>

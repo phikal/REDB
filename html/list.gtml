@@ -12,7 +12,8 @@
 	    </tr>
 	{{ end }}
     </tbody></table>
-    <nav>
+    <hr/>
+    <nav style="float: right">
 	<a href="{{ .B }}" class="{{ if not .B }} npos {{end}}">&lt;&lt;</a>
 	<span>Page {{ .P }}</span>
 	<a href="{{ .N }}" class="{{ if not .N }} npos {{end}}">&gt;&gt;</a>

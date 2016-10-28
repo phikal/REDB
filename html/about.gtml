@@ -1,12 +1,13 @@
+{{ $domain := "redb.org.uk" }}
+
 <!DOCTYPE html>
 <html>
     {{ template "head.gtml" "About REDB" }}
     <body>
 	{{ template "header.gtml"}}
-	{{ $domain := "redb.org.uk" }}
-	<aside id="toc" class="text">
+	<aside class="side">
 	    <h4>Table of Contents</h4>
-	    <ul>
+	    <ul style="padding-left: 25px;">
 		<li><a href="#general">General</a></li>
 		<li><a href="#faq">FAQ</a>
 		    <ul>
@@ -222,6 +223,5 @@
 		by a client programme.
 	    </p>
 	</content>
-	{{ template "footer.gtml" }}
     </body>
 </html>

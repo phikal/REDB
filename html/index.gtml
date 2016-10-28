@@ -4,7 +4,7 @@
     <body>
 	{{ template "header.gtml" .O }}
 	{{ if .S }}
-	    <aside id="greet" class="text">
+	    <aside>
 		<h3>Welcome to the Regular Expresson Database!</h3>
 		<p>
 		    The <a href="https://en.wikipedia.org/wiki/Regular_expression">
@@ -18,6 +18,5 @@
 	<content>
 	    {{ template "list.gtml" . }}
 	</content>
-	{{ template "footer.gtml" }}
     </body>
 </html>

@@ -5,16 +5,16 @@
 	{{ template "header.gtml" }}
 	<content>
 	    <section>
-		<div id="info">
+		<aside class="side">
 		    {{ with $a := .Author }}
 		    {{ with $l := libr . }}
 		    <img style="padding-right: 4px; width: 70px;"
 			 src="{{ $l }}"
 			 title="{{ $a }}"/>
-		    {{ end}}
-		    {{ end}}
+		    {{ end }}
+		    {{ end }}
 
-		    <table style="float: right;"><tbody>
+		    <table><tbody>
 			<tr>
 			    <td><b>Level:</b></td>
 			    <td>{{ .Level }}</td>
@@ -28,7 +28,7 @@
 			    <td title="{{ .Created.Format "Monday, 02-Jan-06 15:04:05 MST" }}">{{ .Created.Format "02 Jan 06" }}</td>
 			</tr>
 		    </tbody></table>
-		</div>
+		</aside>
 
 		<h3 style="margin: 0; padding-top: 18px;">
 		    {{ .Title }}
@@ -79,6 +79,5 @@
 	    <p><i>No solutions yet...</i></p>
 	    {{ end }}
 	</content>
-	{{ template "footer.gtml" }}
     </body>
 </html>

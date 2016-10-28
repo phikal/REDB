@@ -3,45 +3,44 @@
     {{ template "head.gtml" "Contribute to REDB" }}
     <body>
 	{{ template "header.gtml" }}
-	<content>
-	    <form method="post" action="/contrib">
-		<aside id="meta">
-		    <h4>Metadata</h4>
-		    <table><tbody>
-			<tr>
-			    <td>Title*:</td>
-			    <td><input name="title" required/></td>
-			</tr>
-			<tr>
-			    <td title="According to RFC 5322">Author:</td>
-			    <td><input name="author"/></td>
-			</tr>
-		    </tbody></table>
-		    <textarea rows="4"
-			      name="discr"
-			      placeholder="Discription"
-		              style="width: 96%; resize: none"></textarea>
-		    <div id="addrem">
-			Add / remove row:
-			<button type="button" onclick="addrow()">
-			    <code>+</code>
-			</button>
-			<button type="button" onclick="rmrow()">
-			    <code>-</code>
-			</button>
-		    </div>
-		    <div>
-			<img src="/c/{{ . }}.png"/>
-			<br/>
-			<input name="csol" placeholder="Captcha" required/></td>
-			<input name="cid" value="{{ . }}" style="display: none;" />
-		    </div>
-		</aside>
+	<form method="post" action="/contrib">
+	    <aside class="side">
+		<h4>Metadata</h4>
+		<table><tbody>
+		    <tr>
+			<td>Title*:</td>
+			<td><input name="title" required/></td>
+		    </tr>
+		    <tr>
+			<td title="According to RFC 5322">Author:</td>
+			<td><input name="author"/></td>
+		    </tr>
+		</tbody></table>
+		<textarea rows="4"
+			  name="discr"
+			  placeholder="Discription"
+		          style="width: 96%; resize: none"></textarea>
+		<div id="addrem">
+		    Add / remove row:
+		    <button type="button" onclick="addrow()">
+			<code>+</code>
+		    </button>
+		    <button type="button" onclick="rmrow()">
+			<code>-</code>
+		    </button>
+		</div>
+		<div>
+		    <img src="/c/{{ . }}.png"/>
+		    <br/>
+		    <input name="csol" placeholder="Captcha" required/></td>
+		    <input name="cid" value="{{ . }}" style="display: none;" />
+		</div>
+	    </aside>
 
+	    <content>
 		<h3>Submit a new challenge</h3>
 		<q>Anyone can submit to REDB.</q>
-		
-		<p class="text">
+		<p>
 		    To do so, just fill out the form below, and your
 		    challange will be hosted, possibly solved and may
 		    help people in the future. You will/are not allowed
@@ -75,12 +74,11 @@
 		    </tr>
 		</tbody></table>
 		<input type="submit" value="Submit" style="margin: 4px;"/>
-	    </form>
-	    <p style="text-align: right;">
-		*: necessary; will fail if not entered.
-	    </p>
-	</content>
-	{{ template "footer.gtml" }}
+	    </content>
+	</form>
+	<p style="text-align: right;">
+	    *: necessary; will fail if not entered.
+	</p>
 	<script>
 	 function addrow() {
 	     var data = document.getElementById("data");
