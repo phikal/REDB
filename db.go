@@ -140,8 +140,7 @@ func init() {
 
 	getrnd = mustPrepare(`SELECT id
                                 FROM tasks
-                               WHERE level = 0 OR level >= $1
-                            ORDER BY called / EXTRACT(EPOCH FROM created) DESC
+                            ORDER BY ABS(level-$1), called / EXTRACT(EPOCH FROM created) DESC
                               OFFSET RANDOM() * (SELECT COUNT(1) - 1 FROM tasks)
                                LIMIT 1`)
 
