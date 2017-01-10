@@ -29,10 +29,6 @@
 		and their solutions. Tasks are anonymously submitted, and
 		the solutions are anonymously collected via the <a href="#regex">
 		ReGeX game server protocol</a>.
-
-		All information that is permanently stored on this
-		server, is accesable via the web interface, or the
-		periodical <a href="#dbd">database dumps</a>.
 	    </p>
 
 	    <h2 id="faq">FAQ</h2>

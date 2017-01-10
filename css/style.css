@@ -88,3 +88,7 @@ td.word span {
 td.mat span { background: green; }
 
 td.dma span { background: red; }
+
+.text {
+    font-family: sans-serif;
+}

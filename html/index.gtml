@@ -8,14 +8,10 @@
 		<h3>Welcome to the Regular Expresson Database!</h3>
 		<p>
 		    The <a href="https://en.wikipedia.org/wiki/Regular_expression">
-		    Regular Expression</a> Database (REDB) hosts <i><a href="#task">tasks</a></i>
+		    Regular Expression</a> Database (REDB) hosts <i><a href="/about#task">tasks</a></i>
 		    and their solutions. Tasks are anonymously submitted, and
-		    the solutions are anonymously collected via the <a href="#regex">
+		    the solutions are anonymously collected via the <a href="/about#regex">
 		    ReGeX game server protocol</a>.
-
-		    All information that is permanently stored on this
-		    server, is accesable via the web interface, or the
-		    periodical <a href="#dbd">database dumps</a>.
 		</p>
 	    </aside>
 	{{ end}}
