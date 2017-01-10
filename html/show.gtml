@@ -16,10 +16,6 @@
 
 		    <table><tbody>
 			<tr>
-			    <td><b>Level:</b></td>
-			    <td>{{ .Level }}</td>
-			</tr>
-			<tr>
 			    <td><b>Called:</b></td>
 			    <td>{{ .Called }}</td>
 			</tr>

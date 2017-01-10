@@ -37,7 +37,6 @@ func showRegex(w http.ResponseWriter, r *http.Request) {
 		&T.Author,
 		&T.Discription,
 		&T.Called,
-		&T.Level,
 		&T.Created,
 	); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

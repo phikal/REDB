@@ -63,12 +63,6 @@
 			has been offered to a client, but not the ammount of times
 			is has been solved successfully.
 		    </dd>
-		    <dt>Level</dt>
-		    <dd>
-			The levelling algorithm, will probably never
-			be complete, but still tries to rate tasks
-			with a relative difficulty to eachother. No
-			absolute leveling mechanism exits.</dd>
 		    <dt>When created</dt>
 		    <dd>The date and time refering to when the task was created.</dd>
 		</dl>

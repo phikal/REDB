@@ -51,7 +51,7 @@ func init() {
 	}
 
 	genGetall := func(sort string) *sql.Stmt {
-		c := `SELECT id, title, called, level, created
+		c := `SELECT id, title, called, created
                         FROM tasks ORDER BY %s LIMIT %d OFFSET $1`
 		stmt, err := db.Prepare(fmt.Sprintf(c, sort, entries))
 		if err != nil {
@@ -61,7 +61,7 @@ func init() {
 	}
 
 	genFind := func(sort string) *sql.Stmt {
-		c := `SELECT id, title, called, level, created
+		c := `SELECT id, title, called, created
                         FROM tasks WHERE title ~* $1
                     ORDER BY %s LIMIT %d OFFSET $2`
 		stmt, err := db.Prepare(fmt.Sprintf(c, sort, entries))
@@ -81,7 +81,6 @@ func init() {
                          author   VARCHAR(100),
                          discrip  TEXT,
                          called   INT DEFAULT 0,
-                         level    INT NOT NULL,
                          created  TIMESTAMP DEFAULT NOW());`)
 
 	mustExec(`CREATE TABLE IF NOT EXISTS solutions (
@@ -97,20 +96,20 @@ func init() {
                          matches BOOL NOT NULL,
                          task    INT NOT NULL REFERENCES tasks(id) ON DELETE CASCADE)`)
 
-	getad = genGetall("level")
+	getad = genGetall("called")
 	getan = genGetall("created DESC")
 	getap = genGetall("(SELECT COUNT(1) FROM solutions WHERE solves = id) DESC")
 
-	findd = genFind("level")
+	findd = genFind("called")
 	findn = genFind("created DESC")
 	findp = genFind("(SELECT COUNT(1) FROM solutions WHERE solves = id) DESC")
 
-	finddr = genFind("level DESC")
+	finddr = genFind("called DESC")
 	findnr = genFind("created")
 	findpr = genFind("(SELECT COUNT(1) FROM solutions WHERE solves = id)")
 
-	create = mustPrepare(`INSERT INTO tasks (title, author, discrip, level)
-                                   VALUES ($1, $2, $3, $4) RETURNING id`)
+	create = mustPrepare(`INSERT INTO tasks (title, author, discrip)
+                                   VALUES ($1, $2, $3) RETURNING id`)
 
 	create_word = mustPrepare(`INSERT INTO words (word, matches, task)
                                         VALUES ($1, $2, $3)`)
@@ -134,13 +133,13 @@ func init() {
                                 FROM words
                                WHERE task = $1`)
 
-	getone = mustPrepare(`SELECT title, author, discrip, called, level, created
+	getone = mustPrepare(`SELECT title, author, discrip, called,created
                                 FROM tasks
                                WHERE id = $1`)
 
 	getrnd = mustPrepare(`SELECT id
                                 FROM tasks
-                            ORDER BY ABS(level-$1), called / EXTRACT(EPOCH FROM created) DESC
+                            ORDER BY called / EXTRACT(EPOCH FROM created) DESC
                               OFFSET RANDOM() * (SELECT COUNT(1) - 1 FROM tasks)
                                LIMIT 1`)
 

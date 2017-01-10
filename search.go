@@ -86,7 +86,6 @@ func search(w http.ResponseWriter, r *http.Request) {
 				&T.Id,
 				&T.Title,
 				&T.Called,
-				&T.Level,
 				&T.Created,
 			); err != nil {
 				w.WriteHeader(http.StatusInternalServerError)

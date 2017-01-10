@@ -6,13 +6,13 @@
 		<span class="wide">newest</span>
 		<span class="narrow">new</span>
 	    </a> /
-	    <a href="/pop"  {{ if eq . "p" }} style="font-weight: bold;" {{ end }}>
-		<span class="wide">popular</span>
-		<span class="narrow">pop</span>
+	    <a href="/solved"  {{ if eq . "p" }} style="font-weight: bold;" {{ end }}>
+		<span class="wide">solved</span>
+		<span class="narrow">solv</span>
 	    </a> /
-	    <a href="/diff" {{ if eq . "d" }} style="font-weight: bold;" {{ end }}>
-		<span class="wide">difficulty</span>
-		<span class="narrow">diff</span>
+	    <a href="/called" {{ if eq . "d" }} style="font-weight: bold;" {{ end }}>
+		<span class="wide">called</span>
+		<span class="narrow">call</span>
 		
 	    </a>
 	{{ end}}
