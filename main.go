@@ -59,7 +59,6 @@ func main() {
 		http.ServeFile(w, r, "./img/flavicon.png")
 	})
 	http.Handle("/c/", captcha.Server(260, 80))
-	http.Handle("/source/", http.StripPrefix("/source/", http.FileServer(http.Dir("."))))
 
 	log.Println("Starting server on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))

@@ -44,7 +44,7 @@
 		not. Matching is done by means of regular expressions.
 	    </p>
 	    <p>
-		Furthermore the followig <a href="/source/db.go">metadata</a> is stored:
+		Furthermore the followig metadata is stored:
 		<dl>
 		    <dt>Title</dt>
 		    <dd>A short name, explaining what this task is about</dd>
@@ -69,23 +69,13 @@
 		    </dd>
 		    <dt>Level</dt>
 		    <dd>
-			The <a href="/source/model.go">levelling algorithm</a>, will
-			probably never be complete, but still tries to rate tasks
-			with a relative difficulty to eachother. No absolute leveling
-			mechanism exits.
-		    </dd>
+			The levelling algorithm, will probably never
+			be complete, but still tries to rate tasks
+			with a relative difficulty to eachother. No
+			absolute leveling mechanism exits.</dd>
 		    <dt>When created</dt>
 		    <dd>The date and time refering to when the task was created.</dd>
 		</dl>
-	    </p>
-
-	    <h4 id="dbd">What are the <i>database dumps</i>?</h4>
-	    <p>
-		From time to time, the maintainers of REDB publish all the contents
-		of the usually hidden database, in form of a sqlite file. This
-		data is licensed under the <a href="http://opendatacommons.org/licenses/odbl/1.0/">
-		Open Database License</a>, meaning that anyone may use it, as
-		long as they fulfil the conditions described within.
 	    </p>
 
 	    <h4 id="contrib">How to contribute?</h4>
@@ -126,10 +116,7 @@
 	    <h4 id="nsfaq">Not-so-frequently asked questions</h4>
 	    <h5>Copyright and related</h5>
 	    <p>
-		The contents of the database are published under the
-		<a href="http://opendatacommons.org/licenses/odbl/1.0/">
-		    Open Database License</a>, the source code under the
-		<a href="https://www.gnu.org/licenses/gpl-2.0.en.html">
+		The source code under the<a href="https://www.gnu.org/licenses/gpl-2.0.en.html">
 		    GNU General Public License, version 2</a>
 		and the contents of the websites (ie. HTML) under
 		<a href="https://creativecommons.org/licenses/by/3.0/">
@@ -187,8 +174,8 @@
 		the Go programming language</a>. The database used is PostgreSQL.
 	    </p>
 	    <p>
-		The source is <a href="/source/">available</a> for free use under GPL,
-		The <a href="/source/README">README</a> has all the instructions and
+		The source is available for free use under GPL,
+		The README file has all the instructions and
 		information neccesary to start working.
 	    </p>
 
@@ -217,10 +204,9 @@
 	    </p>
 	    <code>nc {{ $domain }} 25921</code>
 	    <p>
-		The protocol is specified in the <a href="/source/game.go">
-		source code</a>, and could (or should) also easily be parsed
-		by a client programme.
-	    </p>
+		The protocol is specified in the <a href="https://github.com/phikal/REDB/blob/master/game.go">
+		source code</a>, and could (or should) also easily be
+		parsed by a client programme.</p>
 	</content>
     </body>
 </html>
